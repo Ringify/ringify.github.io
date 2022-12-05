@@ -9,6 +9,10 @@ body {
 h1 {
 	font-family: 'M PLUS Rounded 1c';
 }
+.headerDiv {
+	display: flex;
+	background: #f4e6d9;
+}
 
 a {
 	color: white;
@@ -36,6 +40,7 @@ a:hover {
 	padding-top: 44px;
 	margin: 0 auto;
 	max-width: 50vw;
+	display: flex;
 }
 
 .videoHeader nav img {
@@ -56,6 +61,7 @@ a:hover {
 	margin: 0;
 	float: right;
 	height: 78px;
+	flex-shrink: 0;
 }
 
 .videoHeader nav li {
