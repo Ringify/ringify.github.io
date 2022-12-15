@@ -89,6 +89,10 @@ a:hover {
 	margin: 0 auto;
 }
 
+#intro p {
+	text-align: justify;
+}
+
 #intro video {
 	width: 100%;
 	margin: 0 auto;
@@ -98,6 +102,10 @@ a:hover {
 #technology {
 	max-width: 50vw;
 	margin: 0 auto;
+}
+
+#technology p {
+	text-align: justify;
 }
 
 #technology video {
@@ -111,6 +119,10 @@ a:hover {
 	margin: 0 auto;
 	padding: 15px;
 	height: auto;
+}
+
+#specs p {
+	text-align: justify;
 }
 
 #specs img{
@@ -168,16 +180,15 @@ a:hover {
 	text-align: center;
 }
 
-
-
-
-
-
 #about {
 	max-width: 50vw;
 	margin: 0 auto;
 	padding: 15px;
 	height: auto;
+}
+
+#about p {
+	text-align: justify;
 }
 
 #about img{
@@ -234,20 +245,12 @@ a:hover {
 	text-align: center;
 }
 
-
-
-
-
-
-
-
-
 footer {
+	text-align: center;
 	max-width: 50vw;
 	margin: 0 auto;
 	padding: 15px;
 	font-size: 15px;
-	text-align: center;
 }
 
 
