@@ -79,7 +79,7 @@ a:hover {
 	color:  goldenrod;
 	text-decoration: none;
 	font-weight: 900;
-	font-size: 28px;
+	font-size: 24px;
 	font-family: 'M PLUS Rounded 1c';
 }
 
@@ -93,7 +93,7 @@ a:hover {
 }
 
 #intro p {
-	text-align: justify;
+	/* text-align: justify; */
 }
 
 #intro video {
@@ -108,7 +108,7 @@ a:hover {
 }
 
 #technology p {
-	text-align: justify;
+	/* text-align: justify; */
 }
 
 #technology video {
@@ -125,7 +125,7 @@ a:hover {
 }
 
 #specs p {
-	text-align: justify;
+	/* text-align: justify; */
 }
 
 #specs img{
@@ -191,7 +191,7 @@ a:hover {
 }
 
 #about p {
-	text-align: justify;
+	/* text-align: justify; */
 }
 
 #about img{

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{page.title}}</title>
+	<link href="https://fonts.googleapis.com/css?family=Adamina|Lato" rel="stylesheet">
+	<link rel="stylesheet" href="{{ site.baseurl }}/styles/blog-posts.css">
+	<script type="text/javascript" async
+	  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+	</script>
+</head>
+<body>
+	<div id="header">
+		<a href="/index.html#projects">↩ return</a>
+	</div>
+
+	<article>
+		<div id="description">
+			<img src="{{page.author-img}}">
+			<p>
+				<strong>Author:</strong> {{page.author}}
+				<br>
+				<span class="date"><strong>Published:</strong> {{page.date | date_to_string}}</span>
+				<br>
+				<strong>Description:</strong> {{page.description}}
+				<br>
+				<strong>Tags:</strong> {{page.tag}}
+			</p>
+		</div>
+		<h1>{{page.title}}</h1>
+		{{page.content}}
+		
+	</article>
+
+</body>
+</html>
