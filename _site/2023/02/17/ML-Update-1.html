@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ML Model Update 1</title>
+	<link href="https://fonts.googleapis.com/css?family=Adamina|Lato" rel="stylesheet">
+	<link rel="stylesheet" href="/styles/blog-posts.css">
+	<script type="text/javascript" async
+	  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+	</script>
+</head>
+<body>
+	<div id="header">
+		<a href="/index.html#projects">↩ return</a>
+	</div>
+
+	<article>
+		<div id="description">
+			<img src="/media/steven.jpg">
+			<p>
+				<strong>Author:</strong> Steven Palayew
+				<br>
+				<span class="date"><strong>Published:</strong> 17 Feb 2023</span>
+				<br>
+				<strong>Description:</strong> Introducing our notification filtering model
+				<br>
+				<br>
+			</p>
+		</div>
+		<h1>ML Model Update 1</h1>
+		<h3 id="a-quick-reminder">A Quick Reminder</h3>
+<p>Potentially the most unique but complex software feature of our smart ring is intelligent notification filtering. This uses machine learning to categorize incoming notifications as urgent, or non-urgent. Activating an LED if an urgent message is received to discreetly inform the user that they should check their phone. Previous work has been done on notification filtering, for example <a href="https://engineering.fb.com/2022/10/31/ml-applications/instagram-notification-management-machine-learning/"> by Meta </a>, but the goal of this work was to filter notifications to only present those that would be most distracting to the user in order to maximize engagement. For example, content from their favorite influencer. On the other hand, the goal of our intelligent notification filtering feature is to only notify users of notifications that there would be tangible negative consequences to them not seeing quickly.</p>
+
+<h3 id="first-model">First Model</h3>
+<p>Previously, our model (MobileBERT trained on 119 text messages I generated manually) was able to achieve a modest but respectable test accuracy of 78.95%, and train accuracy of 85.42%. However, observing this gap along with the change in train and test accuracy with subsequent epochs, it was clear that the model was quickly overfitting on the training data. This was not overly surprising as our training set was very small, and therefore to rectify this issue I decided to generate more training data.</p>
+
+<p>After manually generating 81 more datapoints, I quickly realized that developing a large and comprehensive training set would be extremely time intensive, especially with the rest of the team being focused on tackling challenging hardware problems. I therefore decided to try generating synthetic data.</p>
+
+<h3 id="second-model">Second Model</h3>
+<p>OpenAI’s GPT3 was used for this. Specifically, the Curie model was, and was notably selected over the typically more performant <a href=" https://platform.openai.com/docs/models/gpt-3">Davinci model</a> as Davinci would generate text messages that were too obviously urgent. While the messages Curie generated did sometimes have this issue, it was not as prevalent. Some example urgent synthetic text messages are shown below:</p>
+
+<p><img src="/media/Blogs/Steven/training-data1.png" />
+<em>Synthetic training data samples</em></p>
+
+<p>A total of 1800 synthetic messages were generated (900 urgent, 900 non-urgent). Two methods that were considered in terms of using this synthetic data were, training a model with the synthetic data then further fine tuning with real data, or simply training with mixed data. The latter is much easier to implement from an engineering perspective, and because of this and recent research indicating there may not be a significant performance difference between <a href="https://arxiv.org/pdf/2202.00632.pdf">these two strategies</a>, it was decided to simply used this mixed data strategy. Specifically, the 1800 synthetic messages were added to the 200 real messages previously in the training set to produce a larger, 2000 message train dataset.</p>
+
+<p>The new model trained on this data achieved a test accuracy of 90.9% and a train accuracy of 99.8%; a big improvement! Note that an expanded test set with 22 examples was used to be more thorough, however the original 19 test examples were still in this set and our model still got 17/19 or 89.5% of these messages correct.</p>
+
+<h3 id="whats-next">What’s Next</h3>
+
+<p>Stay tuned for my next blog post where we will take a deeper dive into the performance of our model, and see if there are any improvements that need to be made!</p>
+
+
+		
+	</article>
+
+</body>
+</html>

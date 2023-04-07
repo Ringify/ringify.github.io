@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adding Mappable Actions to Android App</title>
+	<link href="https://fonts.googleapis.com/css?family=Adamina|Lato" rel="stylesheet">
+	<link rel="stylesheet" href="/styles/blog-posts.css">
+	<script type="text/javascript" async
+	  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+	</script>
+</head>
+<body>
+	<div id="header">
+		<a href="/index.html#projects">↩ return</a>
+	</div>
+
+	<article>
+		<div id="description">
+			<img src="/media/kiran.jpg">
+			<p>
+				<strong>Author:</strong> Kiran Manoj
+				<br>
+				<span class="date"><strong>Published:</strong> 24 Mar 2023</span>
+				<br>
+				<strong>Description:</strong> Wrapping up a few key features on the Android app
+				<br>
+				<br>
+			</p>
+		</div>
+		<h1>Adding Mappable Actions to Android App</h1>
+		<p>As our hardware and firmware for the ring was finalized, the final feature we are adding is the ability to allow users to map input methods to features of their preference. This is not a critical must have feature, it is a very nice to have feature.</p>
+
+<p>We had a total of 5 different inputs the ring was able to process. They were: Single tap, Double tap, Triple tap, Long press, and Double tap + Long press. We had exactly 5 actions which our app could perform as well: SOS Emergency Broadcast, Toggle Music, Play Next, Play Previous, and Find My Phone. This meant that each input from the ring could be mapped to exactly one action.</p>
+
+<p>In order to implement this in the app, we had to consider several cases. Firstly, we needed a default mapping which would be present when they first opened the application and had not customized it. This original mapping was selected to be:</p>
+
+<ul>
+  <li>Single tap -&gt; Toggle Music</li>
+  <li>Double tap -&gt; Play Previous</li>
+  <li>Triple tap -&gt; Play Next</li>
+  <li>Long press -&gt; Find My Phone</li>
+  <li>Double tap + Long press -&gt; Emergency SOS Broadcast</li>
+</ul>
+
+<p>One note to make is that we chose the default Emergency SOS Broadcast trigger to be Double tap + Long press to minimize the chance of it being automatically triggered by users.</p>
+
+<p>In order to save user mappings of the inputs to actions, we made use of the local storage of the application. This is used to persist the mappings that users have selected, so that when the application is closed and reopened, the mappings are saved. We use the SharedPreferences library to do this within code. Also, when users update the mappings, we synchronously write to the disc to ensure after updating the mappings, the application will be able to immediately use the new input mappings in the Bluetooth service.</p>
+
+<p>Here is the final completed UI of the app before symposium:</p>
+
+<p><img src="/media/Blogs/Kiran/ui.png" />
+<em>Main menu of the Ringify Android app</em></p>
+
+		
+	</article>
+
+</body>
+</html>
