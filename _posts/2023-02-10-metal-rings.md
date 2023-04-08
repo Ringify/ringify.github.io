@@ -2,7 +2,7 @@
 layout: posts
 author: Ganesh Mathiarasu
 author-img: "/media/ganesh.jpg"
-title: Manufacturing Metal Rings
+title: Machined Ring Experiments
 description: Machining our first rings
 img: /media/Blogs/Ganesh/first-metal-ring.png
 ---
