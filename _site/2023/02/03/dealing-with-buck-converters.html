@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dealing with Buck Converters</title>
+	<link href="https://fonts.googleapis.com/css?family=Adamina|Lato" rel="stylesheet">
+	<link rel="stylesheet" href="/styles/blog-posts.css">
+	<script type="text/javascript" async
+	  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+	</script>
+</head>
+<body>
+	<div id="header">
+		<a href="/index.html#projects">↩ return</a>
+	</div>
+
+	<article>
+		<div id="description">
+			<img src="/media/andrew.jpg">
+			<p>
+				<strong>Author:</strong> Andrew Mourcos
+				<br>
+				<span class="date"><strong>Published:</strong> 03 Feb 2023</span>
+				<br>
+				<strong>Description:</strong> How we dealt with buck converters in our circuit design
+				<br>
+				<br>
+			</p>
+		</div>
+		<h1>Dealing with Buck Converters</h1>
+		<p>Recently, a few people have asked me for circuit design tips when using a buck converter, so I decided to make that the topic of this week’s blog as I’m currently working on power conversion on our electronics module. If you’re unfamiliar, a buck converter is a type of DC-DC converter that’s commonly used to step down voltage to meet the requirements for powering devices on a PCB. There are also other types of voltage step down devices (like LDOs), but bucks benefit from very high efficiency.</p>
+
+<p>I’ll start by introducing the basic operating principle, then I’ll walkthrough an example of how I sized the inductor for the buck on our project.</p>
+
+<h2 id="basic-structure-of-a-buck">Basic Structure of a Buck</h2>
+<p><img src="/media/Blogs/Andrew/buck-circuit.png" />
+<em>Buck converter circuit</em></p>
+
+<p>When designing a buck converter circuit, there are several key components that are required. These include:</p>
+
+<ol>
+  <li>
+    <p><strong>Switching element (MOSFET)</strong>: The switching element is responsible for turning the input voltage on and off at a high frequency. MOSFETs are commonly used due to their high efficiency and fast switching times.</p>
+  </li>
+  <li>
+    <p><strong>Inductor</strong>: The inductor is used to store energy during the on-time of the MOSFET and release that energy to the output capacitor during the off-time of the MOSFET. The value of the inductor is determined by the desired output current and the switching frequency.</p>
+  </li>
+  <li>
+    <p><strong>Output capacitor</strong>: The output capacitor is used to filter the output voltage, smoothing out any ripple caused by the switching frequency. The value of the output capacitor is determined by the desired output voltage and the load current.</p>
+  </li>
+  <li>
+    <p><strong>Diode</strong>: The diode is used to allow current to flow from the inductor to the output capacitor during the off-time of the MOSFET.</p>
+  </li>
+  <li>
+    <p><strong>Control circuitry</strong>: The control circuitry is responsible for regulating the output voltage by adjusting the duty cycle of the switching element. This can be done using a feedback loop, where the output voltage is compared to a reference voltage and the duty cycle is adjusted accordingly.</p>
+  </li>
+</ol>
+
+<p>Annotated in the previous figure, the switching element, control circuitry and diode are often lumped together in a single IC. That leaves the circuit designer to focus on choosing items 2 and 3 above.</p>
+
+<h2 id="sizing-an-inductor">Sizing an Inductor</h2>
+<p>Here, I’ll outline the steps I took in selecting an inductor for a buck converter used on our ring. The first thing to do is collect a few key pieces of information:</p>
+
+<ul>
+  <li><strong><script type="math/tex">V_{out}</script></strong>: Output voltage - design requirement</li>
+  <li><strong><script type="math/tex">V_{in}</script></strong>: Input voltage - design requirement</li>
+  <li><strong><script type="math/tex">\eta</script></strong>: Efficiency (estimate) - plots in the datasheet</li>
+  <li><strong><script type="math/tex">f_{sw}</script></strong>: Average switching frequency - electrical characteristic in the datasheet</li>
+  <li><strong><script type="math/tex">I_{LIM,MIN}</script></strong>: High-side peak current - electrical characteristic in the datasheet</li>
+  <li><strong><script type="math/tex">I_{OUT,MAX}</script></strong>: Max current draw of load (estimate) - take measurements</li>
+</ul>
+
+<p>After gathering that information, we approximated the switching duty-cycle as follows:</p>
+
+<script type="math/tex; mode=display">\delta = \frac{V_{out}}{V_{in}\cdot\eta}</script>
+
+<p>Next, it was necessary to estimate the inductor ripple current. Admittedly, we have a bit of a dillema here - we need to know the inductance to figure out the ripple. Since we just need an estimate, we can look at the datasheet’s recommended range of inductor values and use the median in our calculation as a starting point (call this <script type="math/tex">I_{AVG}</script>):</p>
+
+<script type="math/tex; mode=display">\Delta I_L = \frac{ (V_{in}-V_{out})\cdot\delta }{ f_{sw}\cdot L_{AVG} }</script>
+
+<p>Finally, we can get a lower bound on the inductor size:</p>
+
+<script type="math/tex; mode=display">L_{min} = \frac{V_{out} \cdot (V_{in} - V_{out})}{V_{in}\cdot f_{sw} \cdot \Delta I_L}</script>
+
+<p>That’s it. At this stage, you should also do a quick sanity check that the buck can handle the load’s current draw:</p>
+
+<script type="math/tex; mode=display">I_{IC,MAX} = I_{LIM,MIN} - \frac{1}{2}\Delta I_L</script>
+
+<h2 id="closing-remarks">Closing Remarks</h2>
+<p>In summary, designing a buck converter circuit requires careful consideration of several key components. These include the switching element, inductor, output capacitor, diode, and control circuitry. By properly sizing the inductor, you can help the circuit meet the required specifications and operate efficiently.</p>
+
+<p>While this post only provides a brief overview of inductor sizing, I hope it provides a helpful starting point for those looking to delve deeper into this topic. As always, it’s important to consult datasheets and other resources to ensure that your design meets the necessary requirements.</p>
+
+		
+	</article>
+
+</body>
+</html>
