@@ -61,29 +61,29 @@
 <p>Here, I’ll outline the steps I took in selecting an inductor for a buck converter used on our ring. The first thing to do is collect a few key pieces of information:</p>
 
 <ul>
-  <li><strong><script type="math/tex">V_{out}</script></strong>: Output voltage - design requirement</li>
-  <li><strong><script type="math/tex">V_{in}</script></strong>: Input voltage - design requirement</li>
-  <li><strong><script type="math/tex">\eta</script></strong>: Efficiency (estimate) - plots in the datasheet</li>
-  <li><strong><script type="math/tex">f_{sw}</script></strong>: Average switching frequency - electrical characteristic in the datasheet</li>
-  <li><strong><script type="math/tex">I_{LIM,MIN}</script></strong>: High-side peak current - electrical characteristic in the datasheet</li>
-  <li><strong><script type="math/tex">I_{OUT,MAX}</script></strong>: Max current draw of load (estimate) - take measurements</li>
+  <li><strong>\(V_{out}\)</strong>: Output voltage - design requirement</li>
+  <li><strong>\(V_{in}\)</strong>: Input voltage - design requirement</li>
+  <li><strong>\(\eta\)</strong>: Efficiency (estimate) - plots in the datasheet</li>
+  <li><strong>\(f_{sw}\)</strong>: Average switching frequency - electrical characteristic in the datasheet</li>
+  <li><strong>\(I_{LIM,MIN}\)</strong>: High-side peak current - electrical characteristic in the datasheet</li>
+  <li><strong>\(I_{OUT,MAX}\)</strong>: Max current draw of load (estimate) - take measurements</li>
 </ul>
 
 <p>After gathering that information, we approximated the switching duty-cycle as follows:</p>
 
-<script type="math/tex; mode=display">\delta = \frac{V_{out}}{V_{in}\cdot\eta}</script>
+\[\delta = \frac{V_{out}}{V_{in}\cdot\eta}\]
 
-<p>Next, it was necessary to estimate the inductor ripple current. Admittedly, we have a bit of a dillema here - we need to know the inductance to figure out the ripple. Since we just need an estimate, we can look at the datasheet’s recommended range of inductor values and use the median in our calculation as a starting point (call this <script type="math/tex">I_{AVG}</script>):</p>
+<p>Next, it was necessary to estimate the inductor ripple current. Admittedly, we have a bit of a dillema here - we need to know the inductance to figure out the ripple. Since we just need an estimate, we can look at the datasheet’s recommended range of inductor values and use the median in our calculation as a starting point (call this \(I_{AVG}\)):</p>
 
-<script type="math/tex; mode=display">\Delta I_L = \frac{ (V_{in}-V_{out})\cdot\delta }{ f_{sw}\cdot L_{AVG} }</script>
+\[\Delta I_L = \frac{ (V_{in}-V_{out})\cdot\delta }{ f_{sw}\cdot L_{AVG} }\]
 
 <p>Finally, we can get a lower bound on the inductor size:</p>
 
-<script type="math/tex; mode=display">L_{min} = \frac{V_{out} \cdot (V_{in} - V_{out})}{V_{in}\cdot f_{sw} \cdot \Delta I_L}</script>
+\[L_{min} = \frac{V_{out} \cdot (V_{in} - V_{out})}{V_{in}\cdot f_{sw} \cdot \Delta I_L}\]
 
 <p>That’s it. At this stage, you should also do a quick sanity check that the buck can handle the load’s current draw:</p>
 
-<script type="math/tex; mode=display">I_{IC,MAX} = I_{LIM,MIN} - \frac{1}{2}\Delta I_L</script>
+\[I_{IC,MAX} = I_{LIM,MIN} - \frac{1}{2}\Delta I_L\]
 
 <h2 id="closing-remarks">Closing Remarks</h2>
 <p>In summary, designing a buck converter circuit requires careful consideration of several key components. These include the switching element, inductor, output capacitor, diode, and control circuitry. By properly sizing the inductor, you can help the circuit meet the required specifications and operate efficiently.</p>
