@@ -2,7 +2,7 @@
 layout: posts
 author: Ganesh Mathiarasu
 author-img: "/media/ganesh.jpg"
-title: Machined Ring Experiments
+title: Machined Ring Experiments (Feb 6-10)
 description: Machining our first rings
 img: /media/Blogs/Ganesh/first-metal-ring.png
 ---

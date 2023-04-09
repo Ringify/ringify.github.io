@@ -2,7 +2,7 @@
 layout: posts
 author: Andrew M
 author-img: "/media/andrew.jpg"
-title: Hello World
+title: Hello World (Jan 23-27)
 tag:
 description: Big news!
 img: /media/logo.png

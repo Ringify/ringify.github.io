@@ -2,7 +2,7 @@
 layout: posts
 author: Kiran Manoj
 author-img: "/media/kiran.jpg"
-title: Adding Mappable Actions to Android App
+title: Adding Mappable Actions to Android App (Mar 20-24)
 description: Wrapping up a few key features on the Android app
 img: /media/Blogs/Kiran/ui.png
 ---

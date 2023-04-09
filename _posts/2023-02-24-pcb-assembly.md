@@ -2,7 +2,7 @@
 layout: posts
 author: Andrew Mourcos
 author-img: "/media/andrew.jpg"
-title: Electronics Assembly
+title: Electronics Assembly (Feb 20-24)
 description: Progress update on our first electronics build
 img: /media/Blogs/Andrew/assembly.gif
 ---

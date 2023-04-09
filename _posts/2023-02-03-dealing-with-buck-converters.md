@@ -2,7 +2,7 @@
 layout: posts
 author: Andrew Mourcos
 author-img: "/media/andrew.jpg"
-title: Dealing with Buck Converters
+title: Dealing with Buck Converters (Jan 30 - Feb 3)
 description: How we dealt with buck converters in our circuit design
 img: /media/Blogs/Andrew/buck-circuit.png
 ---
